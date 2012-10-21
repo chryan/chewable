@@ -17,21 +17,21 @@
  */
 
 /**
- * @file NodeDeserialiser.h
+ * @file TreeDeserialiser.h
  * @brief Abstract deserialiser class.
  */
 
-#ifndef __CBL_NODEDESERIALISER_H_
-#define __CBL_NODEDESERIALISER_H_
+#ifndef __CBL_TREEDESERIALISER_H_
+#define __CBL_TREEDESERIALISER_H_
 
 // Chewable Headers//
 #include "cbl/Chewable.h"
-#include "cbl/Reflection/Deserialiser.h"
+#include "cbl/Serialisation/Deserialiser.h"
 
 namespace cbl
 {
-	//! Base deserialiser class.
-	class CBL_API NodeDeserialiser :
+	//! Tree data format deserialiser class (e.g. YAML, XML).
+	class CBL_API TreeDeserialiser :
 		public Deserialiser
 	{
 	/***** Types *****/
@@ -103,4 +103,4 @@ namespace cbl
 	};
 }
 
-#endif // __CBL_NODEDESERIALISER_H_
+#endif // __CBL_TREEDESERIALISER_H_

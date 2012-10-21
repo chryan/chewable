@@ -26,7 +26,7 @@
 
 // Chewable Headers //
 #include "cbl/Chewable.h"
-#include "cbl/Reflection/LinearDeserialiser.h"
+#include "cbl/Serialisation/LinearDeserialiser.h"
 
 namespace cbl
 {

@@ -17,21 +17,21 @@
  */
 
 /**
- * @file NodeSerialiser.h
+ * @file TreeSerialiser.h
  * @brief Abstract serialiser class.
  */
 
-#ifndef __CBL_NODESERIALISER_H_
-#define __CBL_NODESERIALISER_H_
+#ifndef __CBL_TREESERIALISER_H_
+#define __CBL_TREESERIALISER_H_
 
 // Chewable Headers//
 #include "cbl/Chewable.h"
-#include "cbl/Reflection/Serialiser.h"
+#include "cbl/Serialisation/Serialiser.h"
 
 namespace cbl
 {
-	//! Base serialiser class.
-	class CBL_API NodeSerialiser :
+	//! Tree data format serialiser class (e.g. YAML, XML).
+	class CBL_API TreeSerialiser :
 		public Serialiser
 	{
 	/***** Types *****/
@@ -42,7 +42,7 @@ namespace cbl
 	public:
 		//! Serialiser output to file.
 		//! @return					This.
-		NodeSerialiser& Output( const Char* filename );
+		TreeSerialiser& Output( const Char* filename );
 		
 	/***** Protected Methods *****/
 	protected:
@@ -121,4 +121,4 @@ namespace cbl
 	};
 }
 
-#endif // __CBL_NODESERIALISER_H_
+#endif // __CBL_TREESERIALISER_H_

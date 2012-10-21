@@ -46,6 +46,9 @@
     <Filter Include="Source Files\Memory\Detail">
       <UniqueIdentifier>{625e8dfe-80da-46d6-b1a2-b1e8dff6ed9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Serialisation">
+      <UniqueIdentifier>{413d131d-b05a-491c-90a7-824c542e3f1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\cbl\Config.h">
@@ -279,30 +282,6 @@
     <ClInclude Include="..\..\include\cbl\Reflection\CblRegistrar.h">
       <Filter>Source Files\Reflection</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\cbl\Reflection\NodeSerialiser.h">
-      <Filter>Source Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\cbl\Reflection\NodeDeserialiser.h">
-      <Filter>Source Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\cbl\Reflection\Serialiser.h">
-      <Filter>Source Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\cbl\Reflection\Deserialiser.h">
-      <Filter>Source Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\cbl\Reflection\LinearSerialiser.h">
-      <Filter>Source Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\cbl\Reflection\LinearDeserialiser.h">
-      <Filter>Source Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\cbl\Reflection\BinarySerialiser.h">
-      <Filter>Source Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\cbl\Reflection\BinaryDeserialiser.h">
-      <Filter>Source Files\Reflection</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\cbl\Memory\Heap.h">
       <Filter>Source Files\Memory</Filter>
     </ClInclude>
@@ -311,6 +290,30 @@
     </ClInclude>
     <ClInclude Include="..\..\include\cbl\Memory\HeapPages.h">
       <Filter>Source Files\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\cbl\Serialisation\BinaryDeserialiser.h">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\cbl\Serialisation\BinarySerialiser.h">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\cbl\Serialisation\Deserialiser.h">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\cbl\Serialisation\LinearDeserialiser.h">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\cbl\Serialisation\LinearSerialiser.h">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\cbl\Serialisation\Serialiser.h">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\cbl\Serialisation\TreeSerialiser.h">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\cbl\Serialisation\TreeDeserialiser.h">
+      <Filter>Source Files\Serialisation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -434,30 +437,6 @@
     <ClCompile Include="..\..\src\cbl\Reflection\Type.cpp">
       <Filter>Source Files\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\cbl\Reflection\NodeSerialiser.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cbl\Reflection\NodeDeserialiser.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cbl\Reflection\Deserialiser.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cbl\Reflection\Serialiser.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cbl\Reflection\LinearSerialiser.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cbl\Reflection\LinearDeserialiser.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cbl\Reflection\BinarySerialiser.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cbl\Reflection\BinaryDeserialiser.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\cbl\Util\Stopwatch.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
@@ -466,6 +445,30 @@
     </ClCompile>
     <ClCompile Include="..\..\src\cbl\Debug\Win32\Assert.cpp">
       <Filter>Source Files\Debug\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Serialisation\BinaryDeserialiser.cpp">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Serialisation\BinarySerialiser.cpp">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Serialisation\Deserialiser.cpp">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Serialisation\LinearDeserialiser.cpp">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Serialisation\LinearSerialiser.cpp">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Serialisation\Serialiser.cpp">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Serialisation\TreeSerialiser.cpp">
+      <Filter>Source Files\Serialisation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Serialisation\TreeDeserialiser.cpp">
+      <Filter>Source Files\Serialisation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

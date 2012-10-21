@@ -17,25 +17,25 @@
  */
 
 /**
- * @file NodeSerialiser.cpp
- * @brief Abstract node serialiser class.
+ * @file TreeSerialiser.cpp
+ * @brief Abstract tree serialiser class.
  */
 
 // Precompiled Headers //
 #include "cbl/StdAfx.h"
 
 // Chewable Headers //
-#include "cbl/Reflection/NodeSerialiser.h"
+#include "cbl/Serialisation/TreeSerialiser.h"
 
 using namespace cbl;
 
-NodeSerialiser& NodeSerialiser::Output( const Char* filename )
+TreeSerialiser& TreeSerialiser::Output( const Char* filename )
 {
 	OnOutput( mStream, filename );
 	return *this;
 }
 
-NodeSerialiser::StreamPtr NodeSerialiser::DoSerialise( StreamPtr s, const Type* type, const void* obj, const FieldAttr* attr, bool outputType )
+TreeSerialiser::StreamPtr TreeSerialiser::DoSerialise( StreamPtr s, const Type* type, const void* obj, const FieldAttr* attr, bool outputType )
 {
 	Entity::OPTIONS opt = Entity::O_NORMAL;
 

@@ -17,7 +17,7 @@
  */
 
 /**
- * @file NodeDeserialiser.cpp
+ * @file TreeDeserialiser.cpp
  * @brief Abstract deserialiser class.
  */
 
@@ -25,12 +25,12 @@
 #include "cbl/StdAfx.h"
 
 // Chewable Headers//
-#include "cbl/Reflection/NodeDeserialiser.h"
-#include "cbl/Reflection/Serialiser.h"
+#include "cbl/Serialisation/TreeDeserialiser.h"
+#include "cbl/Serialisation/Serialiser.h"
 
 using namespace cbl;
 
-NodeDeserialiser::StreamPtr NodeDeserialiser::DoDeserialise( StreamPtr s, const Type* type, void*& obj, const FieldAttr* attr, bool inferType )
+TreeDeserialiser::StreamPtr TreeDeserialiser::DoDeserialise( StreamPtr s, const Type* type, void*& obj, const FieldAttr* attr, bool inferType )
 {
 	if( !type ) {
 		LOG_ERROR( "Type not specified." );

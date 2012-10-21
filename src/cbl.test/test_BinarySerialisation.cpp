@@ -26,8 +26,8 @@
 
 // Chewable Headers //
 #include <cbl/Chewable.h>
-#include <cbl/Reflection/BinarySerialiser.h>
-#include <cbl/Reflection/BinaryDeserialiser.h>
+#include <cbl/Serialisation/BinarySerialiser.h>
+#include <cbl/Serialisation/BinaryDeserialiser.h>
 
 // Google Test //
 #include <gtest/gtest.h>
