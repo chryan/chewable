@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugLib|Win32">
+      <Configuration>DebugLib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseLib|Win32">
+      <Configuration>ReleaseLib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{60349ACE-184A-45C9-ACD6-B25EE798F639}</ProjectGuid>
+    <RootNamespace>cbl</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\_obj\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\_obj\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">..\..\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">..\..\_obj\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">..\..\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">..\..\_obj\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_d</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">$(ProjectName)_libd</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">$(ProjectName)_lib</TargetName>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProgramFiles)\Visual Leak Detector\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProgramFiles)\Visual Leak Detector\lib\Win32;$(ProgramFiles)\Visual Leak Detector\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">$(ProgramFiles)\Visual Leak Detector\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">$(ProgramFiles)\Visual Leak Detector\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProgramFiles)\Visual Leak Detector\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">$(ProgramFiles)\Visual Leak Detector\lib\Win32;$(ProgramFiles)\Visual Leak Detector\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">$(ProgramFiles)\Visual Leak Detector\lib\Win32;$(ProgramFiles)\Visual Leak Detector\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProgramFiles)\Visual Leak Detector\lib\Win32;$(ProgramFiles)\Visual Leak Detector\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_USRDLL;_SECURE_SCL=0;_CRT_SECURE_NO_WARNINGS;CBL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeaderFile>cbl/StdAfx.h</PrecompiledHeaderFile>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_USRDLL;_SECURE_SCL=0;_CRT_SECURE_NO_WARNINGS;CBL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeaderFile>cbl/StdAfx.h</PrecompiledHeaderFile>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_SECURE_SCL=0;_CRT_SECURE_NO_WARNINGS;STATIC_LIB;CBL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeaderFile>cbl/StdAfx.h</PrecompiledHeaderFile>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_SECURE_SCL=0;_CRT_SECURE_NO_WARNINGS;STATIC_LIB;CBL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PrecompiledHeaderFile>cbl/StdAfx.h</PrecompiledHeaderFile>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\cbl\Chewable.h" />
+    <ClInclude Include="..\..\include\cbl\Config.h" />
+    <ClInclude Include="..\..\include\cbl\Core\Detail\Event_Impl.h" />
+    <ClInclude Include="..\..\include\cbl\Core\Detail\Event_List.h" />
+    <ClInclude Include="..\..\include\cbl\Core\GameState.h" />
+    <ClInclude Include="..\..\include\cbl\Core\GameStateManager.h" />
+    <ClInclude Include="..\..\include\cbl\Core\Object.h" />
+    <ClInclude Include="..\..\include\cbl\Core\ObjectGroups.h" />
+    <ClInclude Include="..\..\include\cbl\Core\ObjectManager.h" />
+    <ClInclude Include="..\..\include\cbl\Core\ObjectPart.h" />
+    <ClInclude Include="..\..\include\cbl\Core\ObjectPartTable.h" />
+    <ClInclude Include="..\..\include\cbl\Math\Matrix3.h" />
+    <ClInclude Include="..\..\include\cbl\Math\Matrix4.h" />
+    <ClInclude Include="..\..\include\cbl\Math\Vector4.h" />
+    <ClInclude Include="..\..\include\cbl\Memory\Heap.h" />
+    <ClInclude Include="..\..\include\cbl\Memory\HeapPages.h" />
+    <ClInclude Include="..\..\include\cbl\Memory\MemDebugger.h" />
+    <ClInclude Include="..\..\include\cbl\Platform.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\BinaryDeserialiser.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\BinarySerialiser.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\LinearDeserialiser.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\LinearSerialiser.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\CblRegistrar.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Deserialiser.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\NodeDeserialiser.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Detail\ArrayContainer_Impl.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Detail\MapContainer_Impl.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Detail\SetContainer_Impl.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Detail\VectorContainer_Impl.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Entity.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\EntityManager.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\EnumConst.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Field.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\FieldContainer.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\NodeSerialiser.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Serialiser.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Type.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\TypeDB.h" />
+    <ClInclude Include="..\..\include\cbl\Reflection\Typing.h" />
+    <ClInclude Include="..\..\include\cbl\StdAfx.h" />
+    <ClInclude Include="..\..\include\cbl\TypeDefs.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\Assert.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\ConsoleLogger.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\FileLogger.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\ILogger.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\Logging.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\LogLevel.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\LogManager.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\ProfileManager.h" />
+    <ClInclude Include="..\..\include\cbl\Debug\Profiling.h" />
+    <ClInclude Include="..\..\include\cbl\Core\DrawableGameComponent.h" />
+    <ClInclude Include="..\..\include\cbl\Core\Event.h" />
+    <ClInclude Include="..\..\include\cbl\Core\Game.h" />
+    <ClInclude Include="..\..\include\cbl\Core\GameComponent.h" />
+    <ClInclude Include="..\..\include\cbl\Core\GameComponentCollection.h" />
+    <ClInclude Include="..\..\include\cbl\Core\Services.h" />
+    <ClInclude Include="..\..\include\cbl\Core\GameTime.h" />
+    <ClInclude Include="..\..\include\cbl\Core\IDrawable.h" />
+    <ClInclude Include="..\..\include\cbl\Core\IUpdatable.h" />
+    <ClInclude Include="..\..\include\cbl\Util\ByteStream.h" />
+    <ClInclude Include="..\..\include\cbl\Util\CName.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Colour.h" />
+    <ClInclude Include="..\..\include\cbl\Util\VectorSet.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Helpers.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Delegate.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Detail\Delegate_Impl.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Detail\Delegate_List.h" />
+    <ClInclude Include="..\..\include\cbl\Util\FileInfo.h" />
+    <ClInclude Include="..\..\include\cbl\Util\FileSystem.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Hash.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Noncopyable.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Property.h" />
+    <ClInclude Include="..\..\include\cbl\Util\SharedPtr.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Singleton.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Stopwatch.h" />
+    <ClInclude Include="..\..\include\cbl\Util\String.h" />
+    <ClInclude Include="..\..\include\cbl\Util\TimeSpan.h" />
+    <ClInclude Include="..\..\include\cbl\Util\Vector.h" />
+    <ClInclude Include="..\..\include\cbl\Util\WeakPtr.h" />
+    <ClInclude Include="..\..\include\cbl\Math\Functions.h" />
+    <ClInclude Include="..\..\include\cbl\Math\Vector2.h" />
+    <ClInclude Include="..\..\include\cbl\Math\Vector3.h" />
+    <ClInclude Include="..\..\include\cbl\Thread\Mutex.h" />
+    <ClInclude Include="..\..\include\cbl\Thread\Runnable.h" />
+    <ClInclude Include="..\..\include\cbl\Thread\Thread.h" />
+    <ClInclude Include="..\..\include\cbl\Thread\ThreadData.h" />
+    <ClInclude Include="..\..\include\cbl\Thread\Win32\MutexImpl.h" />
+    <ClInclude Include="..\..\include\cbl\Thread\Win32\ThreadImpl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\cbl\Core\GameState.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\GameStateManager.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\Object.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\ObjectGroups.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\ObjectManager.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\ObjectPart.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\ObjectPartTable.cpp" />
+    <ClCompile Include="..\..\src\cbl\Debug\ConsoleLogger.cpp" />
+    <ClCompile Include="..\..\src\cbl\Debug\FileLogger.cpp" />
+    <ClCompile Include="..\..\src\cbl\Debug\ILogger.cpp" />
+    <ClCompile Include="..\..\src\cbl\Debug\LogManager.cpp" />
+    <ClCompile Include="..\..\src\cbl\Debug\ProfileManager.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\DrawableGameComponent.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\Game.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\GameComponent.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\GameComponentCollection.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\IDrawable.cpp" />
+    <ClCompile Include="..\..\src\cbl\Core\IUpdatable.cpp" />
+    <ClCompile Include="..\..\src\cbl\Debug\Win32\Assert.cpp" />
+    <ClCompile Include="..\..\src\cbl\Math\Matrix3.cpp" />
+    <ClCompile Include="..\..\src\cbl\Math\Matrix4.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\BinaryDeserialiser.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\BinarySerialiser.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\LinearDeserialiser.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\LinearSerialiser.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\CblRegistrar.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\Deserialiser.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\NodeDeserialiser.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\EntityManager.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\NodeSerialiser.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\Serialiser.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\Type.cpp" />
+    <ClCompile Include="..\..\src\cbl\Reflection\TypeDB.cpp" />
+    <ClCompile Include="..\..\src\cbl\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cbl\Util\ByteStream.cpp" />
+    <ClCompile Include="..\..\src\cbl\Util\Colour.cpp" />
+    <ClCompile Include="..\..\src\cbl\Util\FileInfo.cpp" />
+    <ClCompile Include="..\..\src\cbl\Util\FileSystem.cpp" />
+    <ClCompile Include="..\..\src\cbl\Util\Hash.cpp" />
+    <ClCompile Include="..\..\src\cbl\Util\Stopwatch.cpp" />
+    <ClCompile Include="..\..\src\cbl\Util\Win32\FileSystem_Win32.cpp" />
+    <ClCompile Include="..\..\src\cbl\Util\TimeSpan.cpp" />
+    <ClCompile Include="..\..\src\cbl\Math\Vector2.cpp" />
+    <ClCompile Include="..\..\src\cbl\Math\Vector3.cpp" />
+    <ClCompile Include="..\..\src\cbl\Thread\Mutex.cpp" />
+    <ClCompile Include="..\..\src\cbl\Thread\Runnable.cpp" />
+    <ClCompile Include="..\..\src\cbl\Thread\Thread.cpp" />
+    <ClCompile Include="..\..\src\cbl\Thread\ThreadData.cpp" />
+    <ClCompile Include="..\..\src\cbl\Thread\Win32\MutexImpl.cpp" />
+    <ClCompile Include="..\..\src\cbl\Thread\Win32\ThreadImpl.cpp" />
+    <ClCompile Include="..\..\src\cbl\Util\Win32\Stopwatch_Win32.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\include\cbl\Core\GameComponentCollection.inl" />
+    <None Include="..\..\include\cbl\Core\ObjectPartTable.inl" />
+    <None Include="..\..\include\cbl\Core\Services.inl" />
+    <None Include="..\..\include\cbl\Core\GameStateManager.inl" />
+    <None Include="..\..\include\cbl\Core\ObjectManager.inl" />
+    <None Include="..\..\include\cbl\Math\Matrix3.inl" />
+    <None Include="..\..\include\cbl\Math\Matrix4.inl" />
+    <None Include="..\..\include\cbl\Math\Vector4.inl" />
+    <None Include="..\..\include\cbl\Memory\Heap.inl" />
+    <None Include="..\..\include\cbl\Reflection\EntityManager.inl" />
+    <None Include="..\..\include\cbl\Reflection\Field.inl" />
+    <None Include="..\..\include\cbl\Reflection\FieldContainer.inl" />
+    <None Include="..\..\include\cbl\Reflection\Type.inl" />
+    <None Include="..\..\include\cbl\Reflection\TypeDB.inl" />
+    <None Include="..\..\include\cbl\Util\CName.inl" />
+    <None Include="..\..\include\cbl\Util\VectorSet.inl" />
+    <None Include="..\..\include\cbl\Util\Hash.inl" />
+    <None Include="..\..\include\cbl\Util\SharedPtr.inl" />
+    <None Include="..\..\include\cbl\Util\String.inl" />
+    <None Include="..\..\include\cbl\Util\Vector.inl" />
+    <None Include="..\..\include\cbl\Util\WeakPtr.inl" />
+    <None Include="..\..\include\cbl\Math\Vector2.inl" />
+    <None Include="..\..\include\cbl\Math\Vector3.inl" />
+    <None Include="..\..\include\cbl\Thread\Mutex.inl" />
+    <None Include="..\..\include\cbl\Thread\Thread.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
