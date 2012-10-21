@@ -40,15 +40,13 @@ class TestGame : public Game
 public:
 
 	TestGame()
-		: Game( "TestGame" ),
-		timeOut( 0.0 ) {}
+		: Game( "TestGame" ) {}
 
 	virtual void Update( const GameTime & gameTime )
 	{
 		Game::Update( gameTime );
-		timeOut += static_cast< Real >( gameTime.Elapsed.TotalSeconds() );
 
-		if( timeOut >= maxTimeOut )
+		if( gameTime.Total.TotalSeconds() >= maxTimeOut )
 		{
 			this->Exit();
 		}
@@ -147,17 +145,6 @@ protected:
 	TestGame			testGame;
 	String				finalString;
 };
-
-TEST_F( GameTestFixture, Game_Test )
-{
-	Stopwatch gameLifeTime;
-	gameLifeTime.Start();
-	testGame.Run();
-	gameLifeTime.Stop();
-
-	// Approximate timeout.
-	ASSERT_NEAR( gameLifeTime.GetElapsedTime().TotalSeconds(), testGame.timeOut, 0.1 );
-}
 
 TEST_F( GameOrderTestFixture, Game_OrderTest1 )
 {
