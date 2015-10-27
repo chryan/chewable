@@ -1,0 +1,7 @@
+_bin/
+_obj/
+*.opensdf
+*.sdf
+*ipch/
+*.vs/
+lib/
