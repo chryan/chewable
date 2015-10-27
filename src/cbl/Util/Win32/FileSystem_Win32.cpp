@@ -28,6 +28,8 @@
 #include "cbl/Util/FileSystem.h"
 #include "cbl/Debug/Logging.h"
 
+#include <windows.h>
+
 using namespace cbl;
 
 

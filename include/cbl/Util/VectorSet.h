@@ -21,8 +21,8 @@
  * @brief Fast set class.
  */
 
-#ifndef __CBL_FASTSET_H_
-#define __CBL_FASTSET_H_
+#ifndef __CBL_VECTORSET_H_
+#define __CBL_VECTORSET_H_
 
 // Chewable Headers //
 #include "cbl/Chewable.h"
@@ -34,16 +34,12 @@ namespace cbl
 	template<typename Key, typename Compare = std::less<Key> >
 	class VectorSet
 	{
-	/***** Private Types *****/
-	private:
-		typedef std::vector<Key>	Set;
-
 	/***** Public Types *****/
 	public:
-		typedef typename Set::iterator					iterator;				//!< Forward iterator.
-		typedef typename Set::const_iterator			const_iterator;			//!< Const forward iterator.
-		typedef typename Set::reverse_iterator			reverse_iterator;		//!< Reverse iterator
-		typedef typename Set::const_reverse_iterator	const_reverse_iterator;	//!< Const reverse iterator.
+		typedef typename std::vector<Key>::iterator					iterator;				//!< Forward iterator.
+		typedef typename std::vector<Key>::const_iterator			const_iterator;			//!< Const forward iterator.
+		typedef typename std::vector<Key>::reverse_iterator			reverse_iterator;		//!< Reverse iterator
+		typedef typename std::vector<Key>::const_reverse_iterator	const_reverse_iterator;	//!< Const reverse iterator.
 
 	/***** Public Members *****/
 	public:
@@ -109,8 +105,8 @@ namespace cbl
 
 	/***** Private Members *****/
 	private:
-		Set				mSet;	//!< The vector set.
-		bool			mSorted;
+		std::vector<Key>	mSet;	//!< The vector set.
+		bool				mSorted;
 	};
 }
 

@@ -27,6 +27,8 @@
 // Precompiled Headers //
 #include "cbl/StdAfx.h"
 
+#include <ctime>
+
 using namespace cbl;
 
 const Int64		TimeSpan::TicksPerDay			= 864000000000;
@@ -98,7 +100,7 @@ const String TimeSpan::ToString( void ) const
 	char dayString[50] = {0};
 	
 	if( days > 0 )
-		sprintf( dayString, "%d.", days );
+		std::sprintf(dayString, "%lld.", days);
 
 	sprintf( timeString, "%s%s%0.2lld:%0.2lld:%0.2lld.%0.3lld", ( mTicks < 0 ? "-" : "" ),
 		dayString, hrs, mins, secs, fraction / TicksPerMillisecond );
@@ -109,11 +111,10 @@ const String TimeSpan::ToString( void ) const
 const String TimeSpan::GetSystemTime( void )
 {
 	char	sysTime[9] = { 0 };
-	time_t	currentTime;
 	tm		* timeInfo;
 
-	time( &currentTime );
-	timeInfo = localtime( & currentTime );
+	std::time_t currentTime = std::time(nullptr);
+	timeInfo = std::localtime(&currentTime);
 
 	if( timeInfo )
 		sprintf( sysTime, "%0.2i:%0.2i:%0.2i", timeInfo->tm_hour, timeInfo->tm_min, timeInfo->tm_sec );

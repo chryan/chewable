@@ -33,7 +33,6 @@
 #include "cbl/Util/Noncopyable.h"
 #include "cbl/Util/Property.h"
 #include "cbl/Util/Singleton.h"
-#include "cbl/Thread/Mutex.h"
 
 namespace cbl
 {
@@ -116,14 +115,12 @@ namespace cbl
 		LoggerList							mLogs;			//!< Loggers list.
 		mutable Ostringstream				mBuffer;		//!< Log buffer.
 		mutable LogLevel::Options			mWriteThreshold;//!< Log buffer threshold.
-		CBL_MUTEX_DECLARE( mtxLogging );
 		CBL_DECL_SINGLETON( LogManager );
 	};
 	
 	template< typename T >
 	LogManager & LogManager::operator << ( const T & value )
 	{
-		CBL_MUTEX_SCOPEDLOCK( mtxLogging );
 		mBuffer << value;
 		return *this;
 	}

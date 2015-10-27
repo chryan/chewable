@@ -128,7 +128,7 @@ namespace cbl
 	inline typename VectorSet<Key,Compare>::iterator VectorSet<Key,Compare>::find( const Key& _key ) {
 		if( mSet.empty() ) return mSet.end();
 		if( !mSorted ) {
-			CBL_FOREACH( Set, it, mSet ) {
+			CBL_FOREACH( VectorSet, it, mSet ) {
 				if( !(*it < _key) && !(_key < *it) )
 					return it;
 			}
@@ -143,7 +143,7 @@ namespace cbl
 	inline typename VectorSet<Key,Compare>::const_iterator VectorSet<Key,Compare>::find( const Key& _key ) const {
 		if( mSet.empty() ) return mSet.end();
 		if( !mSorted ) {
-			CBL_FOREACH_CONST( Set, it, mSet ) {
+			CBL_FOREACH_CONST( VectorSet, it, mSet ) {
 				if( !(*it < _key) && !(_key < *it) )
 					return it;
 			}

@@ -48,7 +48,6 @@ ILogger::~ILogger()
 void ILogger::Write( const Char * const message, LogLevel::Options msgLevel,
 	const Char * file, Uint32 line )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxWrite );
 	if( msgLevel & Threshold )
 		Output( message, msgLevel, file, line );
 }

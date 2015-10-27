@@ -35,7 +35,6 @@
 #include "cbl/Debug/Logging.h"
 #include "cbl/Debug/FileLogger.h"
 #include "cbl/Debug/Profiling.h"
-#include "cbl/Thread/Thread.h"
 
 // Using 'this' is fine because the object factory only needs it to store the reference.
 #pragma warning( disable : 4355 )
@@ -312,6 +311,4 @@ void Game::Tick( void )
 			mDrawAccumTime = 0;
 		}
 	}
-
-	//Thread::Sleep( Active ? Uint32(1) : cbl::Uint32( InactiveSleepTime.Milliseconds() ) );
 }

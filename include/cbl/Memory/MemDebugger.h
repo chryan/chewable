@@ -24,21 +24,4 @@
 #ifndef __CBL_MEMDEBUGGER_H_
 #define __CBL_MEMDEBUGGER_H_
 
-// Chewable Headers //
-#include "cbl/Config.h"
-#include "cbl/Platform.h"
-
-#if ( CBL_COMPILER == CBL_COMPILER_MSVC ) && \
-( CBL_MEMORY_MANAGER == CBL_MEMORY_MANAGER_DEBUG )
-	// Enable MSVC memory tracker.
-	#define _CRTDBG_MAP_ALLOC
-	#include <stdlib.h>
-	#include <crtdbg.h>
-
-	#if CBL_VLD_ENABLED == CBL_ENABLED
-		#include <windows.h>
-		#include <vld.h>
-	#endif
-#endif
-
 #endif // __CBL_MEMDEBUGGER_H_

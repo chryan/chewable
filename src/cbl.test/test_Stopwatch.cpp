@@ -26,13 +26,20 @@
 
 // Chewable Headers //
 #include <cbl/Chewable.h>
-#include <cbl/Thread/Thread.h>
 #include <cbl/Util/Stopwatch.h>
 
 // Google Test //
 #include <gtest/gtest.h>
 
+#include <chrono>
+#include <thread>
+
 using namespace cbl;
+
+void Sleep(float time)
+{
+	std::this_thread::sleep_for(std::chrono::milliseconds((long)(time * 1000.0f)));
+}
 
 class StopwatchFixture : public ::testing::Test
 {
@@ -52,7 +59,7 @@ protected:
 TEST_F( StopwatchFixture, Stopwatch_AccuracyTest )
 {
 	testStopwatch.Start();
-	Thread::Sleep( Real( timeTest ) );
+	Sleep( Real( timeTest ) );
 	testStopwatch.Stop();
 
 	Float64 tmp = testStopwatch.GetElapsedTime().TotalSeconds();
@@ -65,20 +72,20 @@ TEST_F( StopwatchFixture, Stopwatch_LapAccuracyTest )
 	
 	testStopwatch.Start();
 	
-	Thread::Sleep( Real( timeTest ) );
+	Sleep( Real( timeTest ) );
 	lap = testStopwatch.GetLapTime().TotalSeconds();
 	ASSERT_NEAR( lap, timeTest, tolerance );
 	lap = testStopwatch.GetLapTime().TotalSeconds();
 
 	ASSERT_NEAR( lap, 0.0, tolerance ); // Near 0.
 	
-	Thread::Sleep( Real( timeTest ) );
+	Sleep( Real( timeTest ) );
 	lap = testStopwatch.GetLapTime().TotalSeconds();
 	ASSERT_NEAR( lap, timeTest, tolerance );
 	
 	testStopwatch.Stop();
 
-	Thread::Sleep( 0.1f );
+	Sleep( 0.1f );
 
 	ASSERT_EQ( testStopwatch.GetLapTime().TotalSeconds(), 0.0 );
 }

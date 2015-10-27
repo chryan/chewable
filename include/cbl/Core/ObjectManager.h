@@ -48,13 +48,9 @@ namespace cbl
 
 	namespace E
 	{
-#ifdef CBL_TPLFUNCTION_PREFERRED_SYNTAX
 		typedef cbl::Event<void(ObjectPtr)>					ObjectChange;		//!< params: object pointer
 		typedef cbl::Event<void(const Hash&, const Hash&)>	ObjectRenamed;		//!< params: old name, new name
-#else
-		typedef cbl::Event1<void,ObjectPtr>					ObjectChange;		//!< params: object pointer
-		typedef cbl::Event2<void,const Hash&,const Hash&)>	ObjectRenamed;		//!< params: old name, new name
-#endif
+
 		typedef ObjectChange ObjectCreate;
 		typedef ObjectChange ObjectDestroy;
 	}
@@ -178,17 +174,11 @@ namespace cbl
 	public:
 		typedef std::unordered_map<CName,Uint32>::iterator					iterator;
 		typedef std::unordered_map<CName,Uint32>::const_iterator			const_iterator;
-		typedef std::unordered_map<CName,Uint32>::reverse_iterator			reverse_iterator;
-		typedef std::unordered_map<CName,Uint32>::const_reverse_iterator	const_reverse_iterator;
 
 		inline iterator begin( void ) { return mObjectNameTable.begin(); }
 		inline iterator end( void ) { return mObjectNameTable.end(); }
 		inline const_iterator begin( void ) const { return mObjectNameTable.begin(); }
 		inline const_iterator end( void ) const { return mObjectNameTable.end(); }
-		inline reverse_iterator rbegin( void ) { return mObjectNameTable.rbegin(); }
-		inline reverse_iterator rend( void ) { return mObjectNameTable.rend(); }
-		inline const_reverse_iterator rbegin( void ) const { return mObjectNameTable.rbegin(); }
-		inline const_reverse_iterator rend( void ) const { return mObjectNameTable.rend(); }
 
 
 	/***** Static Public Methods *****/

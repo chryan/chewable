@@ -36,13 +36,8 @@ namespace cbl
 {
 	namespace E
 	{
-#ifdef CBL_TPLFUNCTION_PREFERRED_SYNTAX
-		typedef Event< void( GameComponent * ) >			Component;		//!< Component changed event.
-		typedef Event< void( DrawableGameComponent * ) >	DrawComponent;	//!< Drawable component changed event.
-#else
-		typedef Event0<void, GameComponent *>				Component;		//!< Component changed event.
-		typedef Event0<void, DrawableGameComponent *>		DrawComponent;	//!< Drawable component changed event.
-#endif
+		typedef Event< void(GameComponent*) >			Component;		//!< Component changed event.
+		typedef Event< void(DrawableGameComponent*) >	DrawComponent;	//!< Drawable component changed event.
 	}
 
 	//! @brief GameComponent container which provides an interface to add and remove game components.

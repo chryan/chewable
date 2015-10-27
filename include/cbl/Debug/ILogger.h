@@ -33,7 +33,6 @@
 #include "cbl/Util/Noncopyable.h"
 #include "cbl/Util/Property.h"
 #include "cbl/Debug/LogLevel.h"
-#include "cbl/Thread/Mutex.h"
 
 namespace cbl
 {
@@ -85,9 +84,6 @@ namespace cbl
 		//! @param	msgLevel	The log level of the message.
 		virtual void Output( const Char * const message, LogLevel::Options msgLevel,
 			const Char * file, Uint32 line ) = 0;
-
-	private:
-		CBL_MUTEX_DECLARE( mtxWrite );
 	};
 }
 

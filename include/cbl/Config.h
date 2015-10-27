@@ -68,20 +68,6 @@ namespace cbl
 	//! Assertion mode.
 	#define CBL_ASSERT_MODE				CBL_ASSERT_FATAL
 
-	/***** Memory Management Configurations *****/
-	#define CBL_MEMORY_MANAGER_DEBUG	0	//!< Use debug memory allocator.
-	#define CBL_MEMORY_MANAGER_STD		1	//!< Use standard memory allocator.
-
-	//! Memory manager to be used.
-	#ifdef CBL_DEBUG
-		#define CBL_MEMORY_MANAGER		CBL_MEMORY_MANAGER_DEBUG
-	#else
-		#define CBL_MEMORY_MANAGER		CBL_MEMORY_MANAGER_STD
-	#endif
-
-	//! Use Visual Leak Detector for debugging.
-	#define CBL_VLD_ENABLED				CBL_DISABLED
-
 	/***** Logging Configurations *****/	
 	//! Logging mode. 1 to enable, 0 to disable.
 	#define CBL_LOGGING_ENABLED			CBL_ENABLED
@@ -90,12 +76,6 @@ namespace cbl
 	/***** Profiling Configurations *****/
 	//! Profiling mode.
 	#define CBL_PROFILING_ENABLED		CBL_DISABLED
-
-	/***** Delegate/Event Syntax Configuration *****/
-	#define CBL_TPLFUNCTION_PREFERRED_SYNTAX
-
-	/***** SSE Configuration *****/
-	#define CBL_SSE_ENABLED				CBL_ENABLED
 }
 
 #endif // __CBL_CONFIG_H_

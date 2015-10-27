@@ -22,6 +22,8 @@
  * @see https://bitbucket.org/dwilliamson/reflectabit
  */
 
+#include "cbl/Debug/Assert.h"
+
 namespace cbl
 {
 	template< typename INTEGRAL_TYPE >

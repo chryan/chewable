@@ -27,7 +27,6 @@
 // Chewable Headers //
 #include "cbl/Chewable.h"
 #include "cbl/Util/Property.h"
-#include "cbl/Thread/Mutex.h"
 
 namespace cbl
 {
@@ -104,7 +103,6 @@ namespace cbl
 		Uint32		mSize;		//!< Current byte stream size.
 		Uint32		mMaxSize;	//!< Maximum byte stream size before reallocation.
 		Uint32		mStartMarker;
-		CBL_MUTEX_DECLARE( mtxRW );
 	};
 
 	/***** Template Method Definitions *****/

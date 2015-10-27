@@ -42,7 +42,6 @@ LogManager::LogManager()
 
 LogManager::~LogManager()
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxLogging );
 	if( !mLogs.empty() )
 	{
 		CBL_FOREACH( LoggerList, it, mLogs )
@@ -57,7 +56,6 @@ LogManager::~LogManager()
 void LogManager::Write( const Char * const message, LogLevel::Options msgLevel,
 	const Char * file, Uint32 line )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxLogging );
 	if( msgLevel & Threshold )
 	{
 		std::string filename = file;
@@ -78,8 +76,6 @@ void LogManager::Write( const Char * const message, LogLevel::Options msgLevel,
 
 void LogManager::Add( const Char * const logName, ILogger * logger )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxLogging );
-
 	LoggerList::iterator findIt = mLogs.find( logName );
 	CBL_ASSERT( findIt == mLogs.end(), "Logger already exists!" );
 	mLogs.insert( LoggerEntry( logName, logger ) );
@@ -87,8 +83,6 @@ void LogManager::Add( const Char * const logName, ILogger * logger )
 
 void LogManager::Remove( const Char * const logName )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxLogging );
-
 	LoggerList::iterator findIt = mLogs.find( logName );
 	CBL_ASSERT( findIt != mLogs.end(), "Logger does not exist!" );
 	CBL_DELETE( findIt->second );
@@ -97,15 +91,12 @@ void LogManager::Remove( const Char * const logName )
 
 ILogger * LogManager::Get( const Char * const logName )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxLogging );
-
 	LoggerList::iterator findIt = mLogs.find( logName );
 	return findIt != mLogs.end() ? findIt->second : NULL;
 }
 
 LogManager & LogManager::operator << ( LogLevel::Options logLevel )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxLogging );
 	mWriteThreshold = logLevel;
 	return *this;
 }
@@ -116,7 +107,6 @@ void LogManager::OutputMessage( const Char * file, Uint32 line )
 	
 	// Reset the buffer and threshold.
 	{
-		CBL_MUTEX_SCOPEDLOCK( mtxLogging );
 		mBuffer.str("");
 		mWriteThreshold = LogLevel::Info;
 	}

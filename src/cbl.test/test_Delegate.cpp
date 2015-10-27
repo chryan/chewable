@@ -67,17 +67,10 @@ private:
 	std::string String;
 };
 
-#ifdef CBL_TPLFUNCTION_PREFERRED_SYNTAX
 typedef Delegate< void() > Delegate0P;
 typedef Delegate< std::string ( int ) > Delegate1P;
 typedef Delegate< std::string ( int,int ) > Delegate2P;
 typedef Delegate< std::string ( int,int,int ) > Delegate3P;
-#else
-typedef Delegate0< void > Delegate0P;
-typedef Delegate1< std::string, int > Delegate1P;
-typedef Delegate2< std::string, int, int > Delegate2P;
-typedef Delegate3< std::string, int, int, int > Delegate3P;
-#endif
 
 TEST( DelegateTestFixture, Delegate_Test )
 {	

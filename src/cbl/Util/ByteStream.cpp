@@ -64,7 +64,6 @@ ByteStream::ByteStream( const ByteStream & rhs )
 	mMaxSize( rhs.mMaxSize ),
 	mStartMarker( 0 )
 {
-	CBL_MUTEX_SCOPEDLOCK( rhs.mtxRW );
 	mBytes = new Char[ mMaxSize ];
 	memset( mBytes, 0, mMaxSize );
 	memcpy( mBytes, rhs.mBytes + rhs.mStartMarker, mSize );
@@ -72,14 +71,11 @@ ByteStream::ByteStream( const ByteStream & rhs )
 
 const Char * ByteStream::GetBytes() const
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxRW );
 	return ( mBytes + mStartMarker );
 }
 
 void ByteStream::Write( const Char * src, Uint32 size )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxRW );
-
 	Uint32 newSize = mSize + size;
 	if( mStartMarker + newSize > mMaxSize )
 		Compress();
@@ -92,8 +88,6 @@ void ByteStream::Write( const Char * src, Uint32 size )
 
 void ByteStream::Read( Char * dst, Uint32 size )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxRW );
-
 	CBL_ASSERT( size <= mSize, "Read access error." );
 	CBL_ASSERT( mStartMarker + size <= mMaxSize, "Read access error." );
 	memcpy( dst, ( mBytes + mStartMarker ), size );
@@ -103,8 +97,6 @@ void ByteStream::Read( Char * dst, Uint32 size )
 
 void ByteStream::Read( ByteStream & dst, Uint32 size )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxRW );
-
 	CBL_ASSERT( size <= mSize, "Read access error." );
 	CBL_ASSERT( mStartMarker + size <= mMaxSize, "Read access error." );
 	dst.Write( ( mBytes + mStartMarker ), size );
@@ -114,8 +106,6 @@ void ByteStream::Read( ByteStream & dst, Uint32 size )
 
 Int32 ByteStream::Find( Char find ) const
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxRW );
-
 	for( Uint32 i = 0; i < mSize; ++i )
 	{
 		if( mBytes[i+mStartMarker] == find )
@@ -126,8 +116,6 @@ Int32 ByteStream::Find( Char find ) const
 
 void ByteStream::Clear( void )
 {
-	CBL_MUTEX_SCOPEDLOCK( mtxRW );
-
 	mStartMarker = 0;
 	mSize = 0;
 }
@@ -136,7 +124,6 @@ ByteStream & ByteStream::operator = ( const ByteStream & rhs )
 {
 	if( &rhs != this )
 	{
-		CBL_MUTEX_SCOPEDLOCK( mtxRW );
 		mSize = 0;
 		mStartMarker = 0;
 		Write( rhs.GetBytes(), rhs.GetSize() );

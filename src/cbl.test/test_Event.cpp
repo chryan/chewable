@@ -32,11 +32,7 @@
 
 using namespace cbl;
 
-#ifdef CBL_TPLFUNCTION_PREFERRED_SYNTAX
-	typedef Event< void( int x, int y ) > TestEvent;
-#else
-	typedef Event2< void, int, int > TestEvent;
-#endif
+typedef Event< void( int x, int y ) > TestEvent;
 
 //! Event test fixture.
 class EventTestFixture : public ::testing::Test
@@ -91,14 +87,14 @@ TEST_F( EventTestFixture, Event_ObjectTest )
 
 TEST_F( EventTestFixture, Event_FunctionTest )
 {
-	evt.Register( TestEvent::Delegate::FromFunction< &EventTestFixture::TestFunction >() );
+	evt.Register( TestEvent::DelegateType::FromFunction< &EventTestFixture::TestFunction >() );
 	evt.Raise( 10, 5 );
-	evt.Unregister( TestEvent::Delegate::FromFunction< &EventTestFixture::TestFunction >() );
+	evt.Unregister( TestEvent::DelegateType::FromFunction< &EventTestFixture::TestFunction >() );
 	evt.Raise( 10, 5 );
 	
-	evt += TestEvent::Delegate::FromFunction< &EventTestFixture::TestFunction >();
+	evt += TestEvent::DelegateType::FromFunction< &EventTestFixture::TestFunction >();
 	evt.Raise( 10, 5 );
-	evt -= TestEvent::Delegate::FromFunction< &EventTestFixture::TestFunction >();
+	evt -= TestEvent::DelegateType::FromFunction< &EventTestFixture::TestFunction >();
 	evt.Raise( 10, 5 );
 }
 

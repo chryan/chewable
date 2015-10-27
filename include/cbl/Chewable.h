@@ -105,14 +105,15 @@ namespace cbl
 	_TPL class WeakPtr;
 }
 
-// External Libraries //
+#undef _TPL3
+#undef _TPL2
+#undef _TPL
+
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
-#include <ctime>
 #include <cstring>
 #include <cstdarg>
-#include <cmath>
 #include <vector>
 #include <map>
 #include <string>
@@ -121,8 +122,6 @@ namespace cbl
 #include <deque>
 #include <queue>
 #include <bitset>
-#include <hash_set>
-#include <hash_map>
 #include <algorithm>
 #include <functional>
 #include <limits>
@@ -130,10 +129,6 @@ namespace cbl
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-
-#undef _TPL3
-#undef _TPL2
-#undef _TPL
 
 #include "cbl/Memory/MemDebugger.h" // Memory manager must be included after STL and before local headers.
 

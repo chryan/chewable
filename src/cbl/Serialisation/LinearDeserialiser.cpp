@@ -105,7 +105,7 @@ StreamPtr LinearDeserialiser::DoDeserialise( StreamPtr s, const Type* type, void
 					bool keyInferType = field.Container->IsKeyPointer && keyType && keyType->IsEntity;
 					bool valInferType = field.Container->IsValuePointer && valType->IsEntity;
 
-					for( cbl::Uint32 i = 0; i < size; ++i ) {
+					for( cbl::Uint32 j = 0; j < size; ++j ) {
 						void	*newKey = NULL,
 								*newVal = NULL;
 
