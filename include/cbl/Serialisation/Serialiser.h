@@ -118,7 +118,7 @@ namespace cbl
 
 	template< typename OBJECT_TYPE >
 	inline Serialiser& Serialiser::Serialise( const OBJECT_TYPE& obj ) {
-		CBL_STATIC_ASSERT( IsPtr<OBJECT_TYPE>::Value == false );
+		static_assert( !IsPtr<OBJECT_TYPE>::Value, "Serialise object type cannot be pointer to pointer." );
 		return Serialise( CBL_ENT.Types.Get<OBJECT_TYPE>(), &obj );
 	}
 }

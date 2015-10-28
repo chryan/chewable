@@ -38,7 +38,7 @@ namespace cbl
 
 	template< typename DESERIALISER_TYPE >
 	ObjectPtr ObjectManager::LoadObjectFromFile( const cbl::Char*, const cbl::Char*, bool ) {
-		CBL_STATIC_ASSERT( false ); // Static assert by default.
+		static_assert(false, "Method must be specialized and implemented."); // Static assert by default.
 	}
 
 	template< typename SERIALISER_TYPE >
@@ -53,7 +53,7 @@ namespace cbl
 
 	template< typename SERIALISER_TYPE >
 	void ObjectManager::SaveObjectToFile( const cbl::Char* file, ObjectPtr obj ) const {
-		CBL_STATIC_ASSERT( false ); // Static assert by default.
+		static_assert(false, "Method must be specialized and implemented."); // Static assert by default.
 	}
 
 	template< typename OBJECT_TYPE >

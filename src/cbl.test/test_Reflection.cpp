@@ -256,9 +256,11 @@ TEST( ReflectionFixture, EnumTest )
 	ForceReconstructEntityManager();
 }
 
+const int ContainerSize = 15;
+
 struct ContainerTest
 {
-	Int32									Array[15];
+	Int32									Array[ContainerSize];
 	std::vector<Int32>						Vector;
 	std::set<Int32>							Set;
 	std::unordered_set<Int32>				USet;
@@ -269,7 +271,7 @@ struct ContainerTest
 	Int32 UnorderedTest;
 
 	ContainerTest() : UnorderedTest(0) {
-		for( int i = 0; i < 15; ++i ) {
+		for( int i = 0; i < ContainerSize; ++i ) {
 			Array[i] = i;
 			Vector.push_back( i );
 			Set.insert(i);
@@ -329,7 +331,7 @@ TEST_F( ReflectionFieldContainerTestFixture, ArrayContainerTest )
 
 	Int32 t = 0;
 	CBL_FOREACH_READ_FIELD_BEGIN( field->Container, it, &cont.Array ) {
-		ASSERT_EQ( *(Int32*)it->GetValue(), t++ );
+		ASSERT_EQ( *it->GetValue<Int32>(), t++ );
 	} CBL_FOREACH_FIELD_END( field->Container, it );
 }
 
@@ -345,8 +347,17 @@ TEST_F( ReflectionFieldContainerTestFixture, VectorContainerTest )
 
 	Int32 t = 0;
 	CBL_FOREACH_READ_FIELD_BEGIN( field->Container, it, &cont.Vector ) {
-		ASSERT_EQ( *(Int32*)it->GetValue(), t++ );
-	} CBL_FOREACH_FIELD_END( field->Container, it );
+		ASSERT_EQ( *it->GetValue<Int32>(), t++ );
+	} CBL_FOREACH_FIELD_END(field->Container, it);
+
+	cbl::FieldWriteIterator* writeIter = CBL_NEW_FIELD_WRITEIT(field->Container, &cont.Vector);
+
+	ASSERT_TRUE(cont.Vector.back() != t);
+	writeIter->Add(t);
+	ASSERT_TRUE(cont.Vector.back() == t);
+	ASSERT_TRUE(cont.Vector.back() != 0);
+	writeIter->AddEmpty();
+	ASSERT_TRUE(cont.Vector.back() == 0);
 }
 
 TEST_F( ReflectionFieldContainerTestFixture, SetContainerTest )
@@ -361,8 +372,18 @@ TEST_F( ReflectionFieldContainerTestFixture, SetContainerTest )
 
 	Int32 t = 0;
 	CBL_FOREACH_READ_FIELD_BEGIN( field->Container, it, &cont.Set ) {
-		ASSERT_EQ( *(Int32*)it->GetValue(), t++ );
-	} CBL_FOREACH_FIELD_END( field->Container, it );
+		ASSERT_EQ( *it->GetValue<Int32>(), t++ );
+	} CBL_FOREACH_FIELD_END(field->Container, it);
+
+	cbl::FieldWriteIterator* writeIter = CBL_NEW_FIELD_WRITEIT(field->Container, &cont.Set);
+	ASSERT_TRUE(cont.Set.find(t) == cont.Set.end());
+	writeIter->Add(t);
+	ASSERT_TRUE(cont.Set.find(t) != cont.Set.end());
+
+	cont.Set.erase(0);
+	ASSERT_TRUE(cont.Set.find(0) == cont.Set.end());
+	writeIter->AddEmpty();
+	ASSERT_TRUE(cont.Set.find(0) != cont.Set.end());
 }
 
 TEST_F( ReflectionFieldContainerTestFixture, USetContainerTest )
@@ -377,10 +398,20 @@ TEST_F( ReflectionFieldContainerTestFixture, USetContainerTest )
 
 	Int32 t = 0;
 	CBL_FOREACH_READ_FIELD_BEGIN( field->Container, it, &cont.USet ) {
-		t += *(Int32*)it->GetValue();
+		t += *it->GetValue<Int32>();
 	} CBL_FOREACH_FIELD_END( field->Container, it );
 
 	ASSERT_EQ( t, cont.UnorderedTest );
+
+	cbl::FieldWriteIterator* writeIter = CBL_NEW_FIELD_WRITEIT(field->Container, &cont.USet);
+	ASSERT_TRUE(cont.USet.find(t) == cont.USet.end());
+	writeIter->Add(t);
+	ASSERT_TRUE(cont.USet.find(t) != cont.USet.end());
+
+	cont.USet.erase(0);
+	ASSERT_TRUE(cont.USet.find(0) == cont.USet.end());
+	writeIter->AddEmpty();
+	ASSERT_TRUE(cont.USet.find(0) != cont.USet.end());
 }
 
 TEST_F( ReflectionFieldContainerTestFixture, MapContainerTest )
@@ -397,9 +428,23 @@ TEST_F( ReflectionFieldContainerTestFixture, MapContainerTest )
 	CBL_FOREACH_READ_FIELD_BEGIN( field->Container, it, &cont.Map ) {
 		std::stringstream num;
 		num << t;
-		ASSERT_EQ( *(String*)it->GetValue(), num.str() );
-		ASSERT_EQ( *(Int32*)it->GetKey(), t++ );
+		ASSERT_EQ( *it->GetValue<String>(), num.str() );
+		ASSERT_EQ( *it->GetKey<Int32>(), t++ );
 	} CBL_FOREACH_FIELD_END( field->Container, it );
+
+	cbl::FieldWriteIterator* writeIter = CBL_NEW_FIELD_WRITEIT(field->Container, &cont.Map);
+
+	ASSERT_TRUE(cont.Map.find(t) == cont.Map.end());
+	writeIter->Add(t, std::string("tryAdd"));
+	ASSERT_TRUE(cont.Map.find(t) != cont.Map.end());
+	ASSERT_EQ(cont.Map.find(t)->second, "tryAdd");
+
+	int key = 0;
+	cont.Map.erase(0);
+	ASSERT_TRUE(cont.Map.find(0) == cont.Map.end());
+	writeIter->AddEmpty(&key);
+	ASSERT_TRUE(cont.Map.find(0) != cont.Map.end());
+	ASSERT_EQ(cont.Map.find(0)->second, std::string());
 }
 
 TEST_F( ReflectionFieldContainerTestFixture, UMapContainerTest )
@@ -414,8 +459,21 @@ TEST_F( ReflectionFieldContainerTestFixture, UMapContainerTest )
 
 	Int32 t = 0;
 	CBL_FOREACH_READ_FIELD_BEGIN( field->Container, it, &cont.UMap ) {
-		t += *(Int32*)it->GetKey();
+		t += *it->GetKey<Int32>();
 	} CBL_FOREACH_FIELD_END( field->Container, it );
 
-	ASSERT_EQ( t, cont.UnorderedTest );
+	ASSERT_EQ(t, cont.UnorderedTest);
+
+	cbl::FieldWriteIterator* writeIter = CBL_NEW_FIELD_WRITEIT(field->Container, &cont.UMap);
+
+	ASSERT_TRUE(cont.UMap.find(t) == cont.UMap.end());
+	writeIter->Add(t, std::string("tryAdd"));
+	ASSERT_TRUE(cont.UMap.find(t) != cont.UMap.end());
+	ASSERT_EQ(cont.UMap.find(t)->second, "tryAdd");
+
+	cont.UMap.erase(0);
+	ASSERT_TRUE(cont.UMap.find(0) == cont.UMap.end());
+	writeIter->AddEmpty<int>(0);
+	ASSERT_TRUE(cont.UMap.find(0) != cont.UMap.end());
+	ASSERT_EQ(cont.UMap.find(0)->second, std::string());
 }

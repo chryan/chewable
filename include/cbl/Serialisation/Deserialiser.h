@@ -120,7 +120,7 @@ namespace cbl
 	template< typename OBJECT_TYPE >
 	inline bool Deserialiser::Deserialise( OBJECT_TYPE& obj )
 	{
-		CBL_STATIC_ASSERT( IsPtr<OBJECT_TYPE>::Value == false );
+		static_assert( !IsPtr<OBJECT_TYPE>::Value, "Deserialise object type cannot be pointer to pointer." );
 		void* o = &obj;
 		return Deserialise( CBL_ENT.Types.Get<OBJECT_TYPE>(), o );
 	}
@@ -128,7 +128,7 @@ namespace cbl
 	template< typename OBJECT_TYPE >
 	inline bool Deserialiser::DeserialisePtr( OBJECT_TYPE*& obj )
 	{
-		CBL_STATIC_ASSERT( IsPtr<OBJECT_TYPE>::Value == false );
+		static_assert( !IsPtr<OBJECT_TYPE>::Value, "Deserialise object type cannot be pointer to pointer." );
 		void* o = obj;
 		if( Deserialise( CBL_ENT.Types.Get<OBJECT_TYPE>(), o ) ) {
 			obj = static_cast<OBJECT_TYPE*>(o);

@@ -44,6 +44,11 @@ namespace cbl
 		virtual bool IncNext( void ) const			= 0;
 		virtual bool IsValid( void ) const			= 0;
 		virtual Uint32 Count( void ) const			= 0;
+
+		template<typename T>
+		inline const T* GetKey() const { return static_cast<const T*>(GetKey()); }
+		template<typename T>
+		inline const T* GetValue() const { return static_cast<const T*>(GetValue()); }
 	};
 
 	//! Field container write iterator.
@@ -58,6 +63,24 @@ namespace cbl
 		virtual bool Add( void* key, void* obj )	= 0;
 		virtual void* AddEmpty( void )				= 0;
 		virtual void* AddEmpty( void* key )			= 0;
+
+		template<typename T>
+		inline bool Add(T obj) { return Add(static_cast<void*>(&obj)); }
+		template<typename T>
+		inline void Add(T* obj) { return Add(static_cast<void*>(obj)); }
+
+		template<typename K, typename V>
+		inline bool Add(K key, V obj) { return Add(static_cast<void*>(&key), static_cast<void*>(&obj)); }
+		template<typename K, typename V>
+		inline bool Add(K* key, V obj) { return Add(static_cast<void*>(key), static_cast<void*>(&obj)); }
+		template<typename K, typename V>
+		inline bool Add(K key, V* obj) { return Add(static_cast<void*>(&key), static_cast<void*>(obj)); }
+		template<typename K, typename V>
+		inline bool Add(K* key, V* obj) { return Add(static_cast<void*>(key), static_cast<void*>(obj)); }
+		template<typename T>
+		inline T* AddEmpty(T key) { return static_cast<T*>(AddEmpty(static_cast<void*>(&key))); }
+		template<typename T>
+		inline T* AddEmpty(T* key) { return static_cast<T*>(AddEmpty(static_cast<void*>(key))); }
 	};
 
 	//! Field container information.

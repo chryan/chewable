@@ -71,14 +71,6 @@ namespace cbl
 		#define CBL_ASSERT( exp, message )		CBL_VOID
 		#define CBL_FAIL( message )				CBL_VOID
 	#endif
-
-	namespace detail
-	{
-		template <bool> struct StaticAssertFailure;
-		template <> struct StaticAssertFailure<true> { };
-	}
-
-	#define CBL_STATIC_ASSERT( condition ) sizeof( cbl::detail::StaticAssertFailure<condition> )
 }
 
 #endif // __CBL_ASSERT_H_

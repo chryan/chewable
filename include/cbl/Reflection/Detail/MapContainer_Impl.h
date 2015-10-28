@@ -121,7 +121,7 @@ namespace cbl
 		FieldContainer* CreateContainer( std::map<KEY, DATA, COMPARE, ALLOC>& )
 		{
 			// Can't deal with keys that are pointers
-			CBL_STATIC_ASSERT( IsPtr<KEY>::Value == false );
+			static_assert( !IsPtr<KEY>::Value, "Container keys cannot be pointer to pointer types." );
 
 			typedef typename std::map<KEY, DATA, COMPARE, ALLOC> MapType;
 
@@ -143,7 +143,7 @@ namespace cbl
 		FieldContainer* CreateContainer( std::unordered_map<KEY, DATA, COMPARE, ALLOC>& )
 		{
 			// Can't deal with keys that are pointers
-			CBL_STATIC_ASSERT( IsPtr<KEY>::Value == false );
+			static_assert( !IsPtr<KEY>::Value, "Container keys cannot be pointer to pointer types." );
 
 			typedef typename std::unordered_map<KEY, DATA, COMPARE, ALLOC> MapType;
 

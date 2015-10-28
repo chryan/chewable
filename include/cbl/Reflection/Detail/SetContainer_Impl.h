@@ -102,7 +102,8 @@ namespace cbl
 			}
 
 			virtual void* AddEmpty( void ) {
-				return &mContainer.insert( ValueType() );
+				auto it = mContainer.insert( ValueType() );
+				return const_cast<ValueType*>(&(*(it.first)));
 			}
 
 			virtual void* AddEmpty( void* key ) {
@@ -119,7 +120,7 @@ namespace cbl
 		FieldContainer* CreateContainer( std::set<KEY, COMPARE, ALLOC>& )
 		{
 			// Can't deal with keys that are pointers
-			CBL_STATIC_ASSERT( IsPtr<KEY>::Value == false );
+			static_assert( !IsPtr<KEY>::Value, "Container keys cannot be pointer to pointer types." );
 
 			typedef typename std::set<KEY, COMPARE, ALLOC> SetType;
 
@@ -139,7 +140,7 @@ namespace cbl
 		FieldContainer* CreateContainer( std::unordered_set<KEY, COMPARE, ALLOC>& )
 		{
 			// Can't deal with keys that are pointers
-			CBL_STATIC_ASSERT( IsPtr<KEY>::Value == false );
+			static_assert( !IsPtr<KEY>::Value, "Container keys cannot be pointer to pointer types." );
 
 			typedef typename std::unordered_set<KEY, COMPARE, ALLOC> SetType;
 
