@@ -42,25 +42,10 @@ namespace cbl
 		~Heap();
         //! Default object allocation.
 		C* Allocate();
-        
-//! Heap allocation template methods.
-#define ALLOC_DECL( paramCount )\
-        template< CBL_TPLPARAM_REPEAT(A, paramCount) >\
-        C* Allocate( CBL_PARAM_REPEAT_DECL(A, a, paramCount) )
-
-        ALLOC_DECL(1);
-        ALLOC_DECL(2);
-        ALLOC_DECL(3);
-        ALLOC_DECL(4);
-        ALLOC_DECL(5);
-        ALLOC_DECL(6);
-        ALLOC_DECL(7);
-        ALLOC_DECL(8);
-        ALLOC_DECL(9);
-        ALLOC_DECL(10);
-
-#undef ALLOC_DECL
-
+		//! Heap allocation variadic arguments.
+		template<typename ...Args>
+		C* Allocate(Args... args);
+		//! Deallocate class memory.
 		bool Deallocate( C* mem );
 
     private:

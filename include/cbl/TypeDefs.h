@@ -56,13 +56,8 @@ namespace cbl
 	typedef int					Int32;			//!< 32-bit signed integer
 	typedef unsigned int		Uint32;			//!< 32-bit unsigned integer
 
-#if ( CBL_PLATFORM == CBL_PLATFORM_WIN32 || CBL_PLATFORM == CBL_PLATFORM_WIN64 )
-	typedef __int64				Int64;			//!< Windows 64-bit signed integer
-	typedef unsigned __int64	Uint64;			//!< Windows 64-bit signed integer
-#else
-	typedef signed long long	Int64;			//!< 64-bit signed integer
-	typedef unsigned long long	Uint64;			//!< 64-bit signed integer
-#endif
+	typedef long long			Int64;			//!< Windows 64-bit signed integer
+	typedef unsigned long long	Uint64;			//!< Windows 64-bit signed integer
 
 	typedef float				Float32;		//!< 32-bit float
 	typedef double				Float64;		//!< 64-bit float

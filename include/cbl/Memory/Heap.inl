@@ -52,41 +52,35 @@ namespace cbl
     inline C* Heap<C,HeapSize>::Allocate()
     {
         cbl::Char* _mem = _AllocateSpace();
-        return _mem ? reinterpret_cast<C*>( new (_mem) C() ) : NULL;
+        return _mem ? reinterpret_cast<C*>( new (_mem) C() ) : nullptr;
 	}
 
-//! Heap allocation template definition.
-#define ALLOC_DEF( paramCount )\
-    template< class C, cbl::Uint32 HeapSize >\
-    template< CBL_TPLPARAM_REPEAT(A, paramCount) >\
-    inline C* Heap<C,HeapSize>::Allocate( CBL_PARAM_REPEAT_DECL(A, a, paramCount) )\
-    {\
-        cbl::Char* _mem = _AllocateSpace();\
-        return _mem ? reinterpret_cast<C*>( new (_mem) C(CBL_PARAM_REPEAT(a, paramCount)) ) : NULL;\
+	//! Heap allocation template definition.
+    template< class C, cbl::Uint32 HeapSize >
+	template< typename... Args>
+    inline C* Heap<C,HeapSize>::Allocate(Args... args)
+    {
+        cbl::Char* _mem = _AllocateSpace();
+        return _mem ? reinterpret_cast<C*>( new (_mem) C(args...) ) : nullptr;
     }
-
-    ALLOC_DEF(1);
-    ALLOC_DEF(2);
-    ALLOC_DEF(3);
-    ALLOC_DEF(4);
-    ALLOC_DEF(5);
-    ALLOC_DEF(6);
-    ALLOC_DEF(7);
-    ALLOC_DEF(8);
-    ALLOC_DEF(9);
-    ALLOC_DEF(10);
 
 #undef ALLOC_DEF
 
     template< class C, cbl::Uint32 HeapSize >
     bool Heap<C,HeapSize>::Deallocate( C* mem )
     {
+		if (mem == nullptr)
+			return false;
+
 		Uint32 arraypos	= ( reinterpret_cast<Char*>(mem) - ( mMemAlloc + sBitSlotSize ) ) / sizeof(C);
 		Uint32 bitpos		= arraypos % 32;
 		Uint32* mempos		= reinterpret_cast<Uint32*>(mMemAlloc) + arraypos / 32;
 		if( ( *mempos & ( 0x80000000 >> bitpos ) ) == 0 )
 			return false;
-		*mempos ^= ( 0x80000000 >> bitpos );
+
+		*mempos ^= (0x80000000 >> bitpos);
+		// Call our destructor when we 'clear' our memory.
+		mem->~C();
 		return true;
 	}
 

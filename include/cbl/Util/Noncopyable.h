@@ -48,9 +48,9 @@ namespace cbl
 	/***** Private Methods *****/
 	private:
 		//! Empty copy constructor.
-		Noncopyable( const Noncopyable & );
+		Noncopyable( const Noncopyable & ) = delete;
 		//! Empty copy assignment operator.
-		const Noncopyable & operator = ( const Noncopyable & );
+		const Noncopyable & operator = ( const Noncopyable & ) = delete;
 	};
 }
 

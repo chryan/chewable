@@ -102,8 +102,7 @@ namespace cbl
 		//! Call the delegate method 'stub'.
 		template< class T, RType(T::*TMethod)(Args...) >
 		inline static RType CBL_DELEGATE_CALLTYPE MethodStub(void * objectPtr, Args... args) {
-			T * p = static_cast<T *>(objectPtr);
-			return (p->*TMethod)(args...);
+			return (static_cast<T*>(objectPtr)->*TMethod)(args...);
 		}
 		//! Call the delegate const method 'stub'.
 		//! @tparam	T			Object type.
@@ -113,8 +112,7 @@ namespace cbl
 		template< class T, RType(T::*TMethod)(Args...) const >
 		inline static RType CBL_DELEGATE_CALLTYPE ConstMethodStub(void * objectPtr, Args... args)
 		{
-			T const * p = static_cast<T *>(objectPtr);
-			return (p->*TMethod)(args...);
+			return (static_cast<T*>(objectPtr)->*TMethod)(args...);
 		}
 
 	/***** Private Members *****/

@@ -129,6 +129,7 @@ namespace cbl
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <initializer_list>
 
 #include "cbl/Memory/MemDebugger.h" // Memory manager must be included after STL and before local headers.
 

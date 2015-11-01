@@ -38,35 +38,46 @@ struct HeapTest {
 	cbl::Uint32 y;
 	cbl::Uint32 z;
 
-    HeapTest() {
-    }
+	int* incCounter = nullptr;
 
-    HeapTest( int t ) {
-        x = y = z = t;
-    }
+	HeapTest(int* counter = nullptr) {
+		incCounter = counter;
+	}
+
+	HeapTest(int t, int* counter = nullptr) {
+		x = y = z = t;
+		incCounter = counter;
+	}
 
     HeapTest( const HeapTest& rhs ) {
         x = rhs.x;
         y = rhs.y;
         z = rhs.z;
     }
+
+	~HeapTest() {
+		if (incCounter != nullptr)
+			*incCounter = *incCounter + 1;
+	}
 };
 
 TEST( HeapFixtureTest, Heap_AllocDeallocTest ) {
+	int intCounter = 0;
     static const Uint32 amt = 1024;
 
 	Heap<HeapTest,amt>	heapTest;
 	HeapTest* arr[amt];
+	
 
 	for( cbl::Uint32 i = 0; i < amt; ++i ) {
-		arr[i] = heapTest.Allocate();
+		arr[i] = heapTest.Allocate(&intCounter);
 		ASSERT_TRUE( arr[i] != NULL );
 		arr[i]->x = i + 5;
 		arr[i]->y = i + 5;
 		arr[i]->z = i + 5;
 	}
 
-	ASSERT_TRUE( heapTest.Allocate() == NULL );
+	ASSERT_TRUE( heapTest.Allocate(&intCounter) == NULL );
 
 	for( cbl::Uint32 i = 0; i < amt; ++i ) {
 		ASSERT_EQ( arr[i]->x, i + 5 );
@@ -74,15 +85,19 @@ TEST( HeapFixtureTest, Heap_AllocDeallocTest ) {
 		ASSERT_EQ( arr[i]->z, i + 5 );
 	}
 
-	ASSERT_TRUE( heapTest.Allocate() == NULL );
+	ASSERT_TRUE( heapTest.Allocate(&intCounter) == NULL );
 
 	for( cbl::Uint32 i = 0; i < amt; ++i ) {
 		ASSERT_TRUE( heapTest.Deallocate( arr[i] ) );
 	}
+	 
+	ASSERT_EQ(intCounter, amt);
 
 	for( cbl::Uint32 i = 0; i < amt; ++i ) {
 		ASSERT_FALSE( heapTest.Deallocate( arr[i] ) );
 	}
+
+	ASSERT_EQ(intCounter, amt);
 
 	// Test the allocations for a second time.
 	for( cbl::Uint32 i = 0; i < amt; ++i ) {
